@@ -1,0 +1,53 @@
+<view class="layout">
+  <view class="column">
+    <view class="logoStyle">
+      <view class="circle">
+        <image src="../../image/person/logo.png" alt="" srcset="" />
+      </view>
+      <view>mytime任务管理</view>
+    </view>
+    <van-divider hairline />
+    <view bindtap="showRate" class="colStyle">
+      <view>评分</view>
+      <van-icon name="arrow" />
+    </view>
+    <van-divider hairline />
+    <view bindtap="showFeedback" class="colStyle">
+      <view>反馈</view>
+      <van-icon name="arrow" />
+    </view>
+    <van-divider hairline />
+    <view class="colStyle" bindtap="showAbout">
+      <view>关于</view>
+      <van-icon name="arrow" />
+    </view>
+    <van-divider hairline />
+    <view class="colStyle">
+      <view>版本</view>
+      <view>v1.1.0</view>
+    </view>
+    <van-divider hairline />
+    <view class="btnStyle">
+      <button bindtap="logout" type="default" plain="true">登出</button>
+    </view>
+  </view>
+</view>
+<van-popup show="{{ rateFlag }}" round closeable close-icon-position="top-right" custom-style="height: 300rpx; width: 400rpx;" bind:close="onClose">
+  <view class="rateStyle">
+    <van-rate value="{{ rateValue }}" size="{{ 25 }}" color="#ffd21e" void-icon="star" void-color="#eee" bind:change="onChange" />
+  </view>
+</van-popup>
+<van-popup round show="{{ feedFlag }}" closeable bind:close="onClose" close-on-click-overlay="{{false}}" position="bottom" close-icon-position="top-left" custom-style="height: 50%;" bind:close="onClose">
+  <view class="achieve" bindtap="Done">发送</view>
+  <view class="container">
+    <view class="popupTitle">反馈</view>
+    <textarea model:value='{{feedbackText}}' type="text" placeholder="你对该小程序有什么改进建议吗？" />
+  </view>
+</van-popup>
+<van-popup show="{{ aboutFlag }}" round closeable close-icon-position="top-right" custom-style="width: 80%;" bind:close="onClose">
+  <view class="textStyle">
+    <view>{{aboutText}}</view>
+  </view>
+</van-popup>
+<van-toast id="van-toast" />
+<van-notify id="van-notify" />
